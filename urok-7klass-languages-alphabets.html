@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Информатика 7 класс: Разнообразие языков и алфавитов. Естественные и формальные языки</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+      --accent: #0d9488;
+      --accent-light: #ccfbf1;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --warning: #d97706;
+      --warning-light: #fef3c7;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --radius: 16px;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 56px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+
+    .topbar-inner {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .topbar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .timer-box {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.35s ease;
+    }
+
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-top: 10px;
+      scrollbar-width: none;
+    }
+
+    .nav-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .nav-pill.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .nav-pill.done {
+      border-color: var(--success);
+      color: var(--success);
+      background: var(--success-light);
+    }
+
+    .nav-pill.active.done {
+      background: var(--success);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(203, 213, 225, 0.75);
+    }
+
+    .module {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .module.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 1.52rem;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.28rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    h3 {
+      font-size: 1.06rem;
+      margin: 16px 0 8px;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    ul {
+      margin: 8px 0 14px 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .time-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .callout {
+      background: var(--surface-soft);
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 0 12px 12px 0;
+      margin: 14px 0;
+    }
+
+    .callout.warn {
+      border-left-color: var(--warning);
+      background: var(--warning-light);
+    }
+
+    .callout.success {
+      border-left-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .info-box {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .info-box strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+    }
+
+    .formula-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin: 12px 0;
+      font-size: 0.96rem;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    .interactive-zone {
+      background: #f8fafc;
+      border: 2px dashed #93c5fd;
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-top: 18px;
+    }
+
+    .interactive-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    .btn-success {
+      background: var(--success);
+    }
+
+    .btn-success:hover {
+      background: #047857;
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 0.86rem;
+      border-radius: 8px;
+    }
+
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin: 8px 0 12px;
+    }
+
+    /* Карточки сортировки / выбора */
+    .sort-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .sort-item-text {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .sort-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .choice-btn {
+      background: var(--surface-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .choice-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .choice-btn.selected {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .choice-btn.correct {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .choice-btn.wrong {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+    }
+
+    /* Анализатор алфавитов */
+    .mono-panel {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: "Courier New", Courier, monospace;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      word-break: break-word;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    .char-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .char-chip {
+      background: #1e293b;
+      border: 1px solid #38bdf8;
+      color: #f8fafc;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    /* Итоговый тест */
+    .quiz-q {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      margin-top: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.93rem;
+      transition: all 0.15s;
+    }
+
+    .quiz-opt:hover {
+      border-color: var(--primary);
+    }
+
+    .quiz-opt.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      font-weight: 600;
+    }
+
+    .quiz-opt.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+      color: #991b1b;
+    }
+
+    /* Сертификат */
+    .cert-box {
+      border: 3px solid var(--primary);
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .cert-grade {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--success);
+      background: var(--success-light);
+      padding: 8px 22px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 0.93rem;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 16px; }
+      h1 { font-size: 1.32rem; }
+      h2 { font-size: 1.16rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-row">
+        <span class="badge">Информатика • 7 класс</span>
+        <span class="timer-box" id="timerDisplay">Время урока: 00:00 / 45:00</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressBar"></div>
+      </div>
+      <nav class="nav-pills" id="navPills">
+        <button class="nav-pill active" onclick="goToStep(0)">Старт</button>
+        <button class="nav-pill" onclick="goToStep(1)">1. Виды языков</button>
+        <button class="nav-pill" onclick="goToStep(2)">2. Алфавит и мощность</button>
+        <button class="nav-pill" onclick="goToStep(3)">3. Двоичный алфавит</button>
+        <button class="nav-pill" onclick="goToStep(4)">4. Точность языков</button>
+        <button class="nav-pill" onclick="goToStep(5)">5. Итоговый тест</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ШАГ 0: ВВЕДЕНИЕ -->
+    <section class="module active" id="step-0">
+      <div class="card">
+        <span class="time-tag">Самостоятельный урок • 45 минут</span>
+        <h1>Разнообразие языков и алфавитов. Естественные и формальные языки</h1>
+        <p>Чтобы хранить, передавать и обрабатывать информацию, люди и компьютеры используют <strong>знаковые системы — языки</strong>. На нашей планете существуют тысячи разговорных языков, но кроме них человечество создало особые языки науки, музыки, техники и программирования.</p>
+        <p>На этом уроке ты разберёшься, чем <strong>естественные языки</strong> отличаются от <strong>формальных</strong>, узнаешь, что такое <strong>мощность алфавита</strong>, и проверишь, как любая информация записывается с помощью всего двух знаков.</p>
+
+        <div class="callout">
+          <strong>Как пройти урок на отлично:</strong><br />
+          1. Изучай теоретические блоки последовательно от 1-го до 4-го модуля.<br />
+          2. Выполняй интерактивные тренажёры сразу после чтения.<br />
+          3. В конце ответь на 8 вопросов итогового теста и отправь скриншот карточки с оценкой учителю.
+        </div>
+
+        <label for="studentNameInput"><strong>Введи фамилию, имя и класс перед началом:</strong></label>
+        <input type="text" id="studentNameInput" class="input-field" placeholder="Например: Власов Тимофей, 7-Б" />
+
+        <div class="nav-footer">
+          <span></span>
+          <button class="btn" onclick="startLesson()">Начать урок →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ШАГ 1: ЕСТЕСТВЕННЫЕ И ФОРМАЛЬНЫЕ ЯЗЫКИ -->
+    <section class="module" id="step-1">
+      <div class="card">
+        <span class="time-tag">Модуль 1 • Рекомендуемое время: 10 минут</span>
+        <h2>1. Язык как знаковая система. Естественные и формальные языки</h2>
+        <p><strong>Язык</strong> — это определённая знаковая система представления информации, которая имеет свой набор символов и правила составления из них осмысленных сообщений. Все языки делятся на две большие группы:</p>
+
+        <div class="grid-2">
+          <div class="info-box">
+            <strong>Естественные языки</strong>
+            Сложились исторически в процессе развития человеческого общества и используются для живого общения людей.<br />
+            <em>Примеры:</em> русский, английский, китайский, арабский, французский.<br />
+            <em>Особенности:</em> постоянно развиваются (появляются новые слова), имеют исключения из правил, синонимы и многозначные слова.
+          </div>
+          <div class="info-box">
+            <strong>Формальные языки</strong>
+            Созданы людьми искусственно для специальных областей науки, техники, искусства или управления машинами.<br />
+            <em>Примеры:</em> язык математики (цифры и формулы), нотная грамота, дорожные знаки, азбука Морзе, языки программирования (Python, Pascal).<br />
+            <em>Особенности:</em> строгие правила без исключений, каждый знак или команда имеет <strong>один точный смысл</strong>.
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Интересный факт:</strong> Существуют также <em>искусственные разговорные языки</em> (например, эсперанто или эльфийский язык из книг Толкина), созданные авторами для общения людей или художественных миров, но в информатике главным рабочим инструментом являются именно <strong>формальные языки</strong>.
+        </div>
+
+        <div class="interactive-zone">
+          <div class="interactive-title">Тренажёр: Естественный или формальный язык?</div>
+          <p style="font-size: 0.92rem;">Определи, к какому виду относится каждая знаковая система:</p>
+          <div id="m1Container"></div>
+          <button class="btn btn-sm" onclick="checkM1()">Проверить ответы</button>
+          <div class="feedback" id="m1Feedback"></div>
+        </div>
+
+        <div class="nav-footer">
+          <button class="btn btn-secondary" onclick="goToStep(0)">← Назад</button>
+          <button class="btn" onclick="goToStep(2)">Дальше: Алфавит и мощность →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ШАГ 2: АЛФАВИТ И МОЩНОСТЬ АЛФАВИТА -->
+    <section class="module" id="step-2">
+      <div class="card">
+        <span class="time-tag">Модуль 2 • Рекомендуемое время: 12 минут</span>
+        <h2>2. Алфавит и мощность алфавита</h2>
+        <p><strong>Алфавит</strong> — это конечный набор отличных друг от друга символов (знаков), используемых для представления информации на данном языке.</p>
+        <p><strong>Мощность алфавита (<i>N</i>)</strong> — это полное количество символов в этом алфавите.</p>
+
+        <div class="formula-box">
+          Мощность алфавита обозначается буквой N &nbsp;|&nbsp; Например: для русского алфавита N = 33
+        </div>
+
+        <div class="callout warn">
+          <strong>Важно для решения задач по информатике!</strong> Когда измеряют информационный объём печатного текста, в «компьютерный алфавит» включают не только строчные и заглавные буквы, но также <strong>цифры, знаки препинания и пробел</strong> (пробел — это полноценный символ!).
+        </div>
+
+        <div class="interactive-zone">
+          <div class="interactive-title">Интерактивный справочник: Исследуй разные алфавиты</div>
+          <p style="font-size: 0.92rem;">Нажимай на кнопки, чтобы увидеть состав и мощность известных алфавитов:</p>
+          <div class="sort-buttons" id="alphaPresetBtns">
+            <button class="choice-btn selected" onclick="showAlphaPreset('ru', this)">Русский (N = 33)</button>
+            <button class="choice-btn" onclick="showAlphaPreset('en', this)">Латинский (N = 26)</button>
+            <button class="choice-btn" onclick="showAlphaPreset('dec', this)">Десятичный (N = 10)</button>
+            <button class="choice-btn" onclick="showAlphaPreset('bin', this)">Двоичный (N = 2)</button>
+            <button class="choice-btn" onclick="showAlphaPreset('dna', this)">Генетический ДНК (N = 4)</button>
+          </div>
+          <div class="info-box" style="margin-top: 10px;" id="alphaPresetDetail"></div>
+
+          <hr style="margin: 18px 0; border: none; border-top: 1px solid var(--border);" />
+
+          <div class="interactive-title">Живой анализатор: Измерь алфавит своей фразы</div>
+          <p style="font-size: 0.92rem;">Введи любое слово или предложение — программа выделит все уникальные символы (включая пробелы) и покажет минимальную мощность алфавита для записи этой фразы:</p>
+          <input type="text" id="phraseAnalyzeInput" class="input-field" value="Информатика 7 класс!" oninput="analyzeUserPhrase()" />
+          <div class="mono-panel" id="phraseAnalyzeOut"></div>
+        </div>
+
+        <div class="nav-footer">
+          <button class="btn btn-secondary" onclick="goToStep(1)">← Назад</button>
+          <button class="btn" onclick="markStepDone(2); goToStep(3)">Дальше: Двоичный алфавит →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ШАГ 3: ДВОИЧНЫЙ АЛФАВИТ И ВАЛИДАЦИЯ СООБЩЕНИЙ -->
+    <section class="module" id="step-3">
+      <div class="card">
+        <span class="time-tag">Модуль 3 • Рекомендуемое время: 10 минут</span>
+        <h2>3. Двоичный алфавит — универсальный язык техники</h2>
+        <p>Какой алфавит имеет наименьшую возможную мощность, пригодную для записи разнообразных сообщений? Это <strong>двоичный алфавит</strong>, состоящий всего из <strong>двух символов: <code>0</code> и <code>1</code></strong> (его мощность <strong><i>N</i> = 2</strong>).</p>
+
+        <div class="grid-3">
+          <div class="info-box">
+            <strong>Почему именно 2 знака?</strong>
+            В электронике проще и надёжнее всего различать два устойчивых состояния: «есть напряжение / нет напряжения», «намагничено / не намагничено».
+          </div>
+          <div class="info-box">
+            <strong>Что такое БИТ?</strong>
+            Каждый отдельный символ двоичного алфавита (один <code>0</code> или одна <code>1</code>) называется <strong>битом</strong> (от англ. <em>binary digit</em> — двоичная цифра).
+          </div>
+          <div class="info-box">
+            <strong>Универсальность</strong>
+            Используя длинные цепочки из нулей и единиц, компьютер способен представить текст, числа, звук, фотографии и видеофильмы.
+          </div>
+        </div>
+
+        <div class="interactive-zone">
+          <div class="interactive-title">Тренажёр: Проверь сообщение на соответствие алфавиту</div>
+          <p style="font-size: 0.92rem;">Сообщение записано правильно только тогда, когда <strong>каждый его символ</strong> входит в указанный алфавит. Проверь 4 записи:</p>
+          <div id="m3Container"></div>
+          <button class="btn btn-sm" onclick="checkM3()">Проверить записи</button>
+          <div class="feedback" id="m3Feedback"></div>
+        </div>
+
+        <div class="nav-footer">
+          <button class="btn btn-secondary" onclick="goToStep(2)">← Назад</button>
+          <button class="btn" onclick="goToStep(4)">Дальше: Точность формальных языков →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ШАГ 4: ТОЧНОСТЬ ФОРМАЛЬНЫХ ЯЗЫКОВ -->
+    <section class="module" id="step-4">
+      <div class="card">
+        <span class="time-tag">Модуль 4 • Рекомендуемое время: 6 минут</span>
+        <h2>4. Почему компьютерам нужны формальные языки?</h2>
+        <p>В естественном языке смысл фразы часто зависит от контекста, интонации или расстановки запятых. Человек легко догадается, о чём идёт речь, а компьютер — формальный исполнитель — не умеет «угадывать» смысл.</p>
+
+        <div class="callout warn">
+          <strong>Классические примеры неоднозначности естественного языка:</strong><br />
+          • <em>Омонимы:</em> слово «ключ» может означать родник, гаечный ключ, ключ от замка или скрипичный ключ в нотах.<br />
+          • <em>Пунктуация:</em> сравните две фразы — «Казнить, нельзя помиловать» и «Казнить нельзя, помиловать». Одна запятая меняет смысл на противоположный!
+        </div>
+
+        <p>Поэтому для управления компьютерами созданы <strong>языки программирования</strong> (Python, C++, Pascal, Scratch) — формальные языки со строгим <strong>алфавитом</strong>, <strong>синтаксисом</strong> (правилами записи команд) и <strong>семантикой</strong> (точным смыслом каждой команды).</p>
+
+        <div class="interactive-zone">
+          <div class="interactive-title">Лингвистический практикум: Определи причину проблемы</div>
+          <div id="m4Container"></div>
+          <button class="btn btn-sm" onclick="checkM4()">Проверить</button>
+          <div class="feedback" id="m4Feedback"></div>
+        </div>
+
+        <div class="nav-footer">
+          <button class="btn btn-secondary" onclick="goToStep(3)">← Назад</button>
+          <button class="btn" onclick="goToStep(5)">Перейти к итоговому тесту →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ШАГ 5: ИТОГОВЫЙ ТЕСТ -->
+    <section class="module" id="step-5">
+      <div class="card">
+        <span class="time-tag">Модуль 5 • Рекомендуемое время: 7 минут</span>
+        <h2>5. Итоговый контроль знаний</h2>
+        <p>Ответь на 8 вопросов по всем разделам урока. После проверки сформируется именная карточка с оценкой.</p>
+
+        <div id="finalQuizContainer"></div>
+
+        <button class="btn btn-success" style="width: 100%; margin-top: 10px;" onclick="finishLesson()">Завершить урок и получить оценку</button>
+
+        <div id="certificateSection" style="display: none;">
+          <div class="cert-box">
+            <div style="font-size: 0.88rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700;">
+              Карточка прохождения урока • Информатика 7 класс
+            </div>
+            <h2 id="certStudentName" style="margin: 8px 0; color: var(--text);">Ученик 7 класса</h2>
+            <p style="margin-bottom: 4px;">Тема: «Разнообразие языков и алфавитов. Естественные и формальные языки»</p>
+            <div class="cert-grade" id="certGradeText">Оценка: 5 (Отлично)</div>
+            <p id="certStats" style="font-weight: 600;"></p>
+            <p id="certCode" style="font-family: monospace; font-size: 0.9rem; color: var(--text-muted);"></p>
+            <div class="callout success" style="text-align: left; margin-top: 12px;">
+              Сделай скриншот этой карточки и отправь учителю для выставления оценки в журнал!
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-footer">
+          <button class="btn btn-secondary" onclick="goToStep(4)">← Вернуться к теории</button>
+          <button class="btn btn-secondary btn-sm" onclick="resetAll()">Пройти заново</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // --- СОСТОЯНИЕ ---
+    const state = {
+      currentStep: 0,
+      completedSteps: [false, false, false, false, false, false],
+      secondsElapsed: 0,
+      studentName: ""
+    };
+
+    // --- ТАЙМЕР ---
+    setInterval(() => {
+      state.secondsElapsed++;
+      const m = String(Math.floor(state.secondsElapsed / 60)).padStart(2, "0");
+      const s = String(state.secondsElapsed % 60).padStart(2, "0");
+      document.getElementById("timerDisplay").textContent = `Время урока: ${m}:${s} / 45:00`;
+    }, 1000);
+
+    // --- НАВИГАЦИЯ ---
+    function goToStep(idx) {
+      document.querySelectorAll(".module").forEach((el, i) => el.classList.toggle("active", idx === i));
+      document.querySelectorAll(".nav-pill").forEach((pill, i) => {
+        pill.classList.toggle("active", idx === i);
+        pill.classList.toggle("done", state.completedSteps[i]);
+      });
+      state.currentStep = idx;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function markStepDone(idx) {
+      state.completedSteps[idx] = true;
+      const pills = document.querySelectorAll(".nav-pill");
+      if (pills[idx]) pills[idx].classList.add("done");
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const done = state.completedSteps.filter(Boolean).length;
+      const pct = Math.min(100, Math.round((done / 5) * 100));
+      document.getElementById("progressBar").style.width = `${pct}%`;
+    }
+
+    function startLesson() {
+      const val = document.getElementById("studentNameInput").value.trim();
+      state.studentName = val || "Ученик 7 класса";
+      markStepDone(0);
+      goToStep(1);
+    }
+
+    // --- УНИВЕРСАЛЬНЫЙ РЕНДЕР ТРЕНАЖЁРОВ ---
+    const sortStorage = { m1Container: {}, m3Container: {}, m4Container: {} };
+
+    function buildSortModule(containerId, items, options) {
+      const box = document.getElementById(containerId);
+      box.innerHTML = "";
+      items.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = "sort-item";
+        div.innerHTML = `
+          <div class="sort-item-text"><strong>${idx + 1}.</strong> ${item.text}</div>
+          <div class="sort-buttons" id="${containerId}-btns-${idx}">
+            ${options.map(opt => `
+              <button class="choice-btn" onclick="selectSortOption('${containerId}', ${idx}, '${opt}', this)">${opt}</button>
+            `).join("")}
+          </div>
+        `;
+        box.appendChild(div);
+      });
+    }
+
+    function selectSortOption(containerId, idx, opt, btn) {
+      sortStorage[containerId][idx] = opt;
+      const group = document.getElementById(`${containerId}-btns-${idx}`);
+      group.querySelectorAll(".choice-btn").forEach(b => b.classList.remove("selected", "correct", "wrong"));
+      btn.classList.add("selected");
+    }
+
+    function evaluateSortModule(containerId, items, feedbackId, stepIndex) {
+      let ok = 0;
+      items.forEach((item, idx) => {
+        const group = document.getElementById(`${containerId}-btns-${idx}`);
+        const chosen = sortStorage[containerId][idx];
+        group.querySelectorAll(".choice-btn").forEach(b => {
+          b.classList.remove("selected", "correct", "wrong");
+          if (b.textContent === chosen) {
+            if (chosen === item.answer) {
+              b.classList.add("correct");
+              ok++;
+            } else {
+              b.classList.add("wrong");
+            }
+          }
+        });
+      });
+      const fb = document.getElementById(feedbackId);
+      if (ok === items.length) {
+        fb.style.color = "var(--success)";
+        fb.textContent = `Отлично! Все ${ok} из ${items.length} ответов верны!`;
+        markStepDone(stepIndex);
+      } else {
+        fb.style.color = "var(--warning)";
+        fb.textContent = `Правильно: ${ok} из ${items.length}. Исправь выделенные красным пункты.`;
+      }
+    }
+
+    // --- МОДУЛЬ 1 ---
+    const m1Data = [
+      { text: "Русский язык, на котором мы общаемся в повседневной жизни", answer: "Естественный язык" },
+      { text: "Язык программирования Python для написания компьютерных программ", answer: "Формальный язык" },
+      { text: "Нотная грамота для записи музыкальных произведений", answer: "Формальный язык" },
+      { text: "Английский разговорный язык", answer: "Естественный язык" },
+      { text: "Система дорожных знаков и разметки", answer: "Формальный язык" },
+      { text: "Язык математических формул и уравнений", answer: "Формальный язык" }
+    ];
+    buildSortModule("m1Container", m1Data, ["Естественный язык", "Формальный язык"]);
+    function checkM1() { evaluateSortModule("m1Container", m1Data, "m1Feedback", 1); }
+
+    // --- МОДУЛЬ 2: СПРАВОЧНИК И АНАЛИЗАТОР АЛФАВИТОВ ---
+    const alphaPresets = {
+      ru: {
+        title: "Русский алфавит (кириллица)",
+        power: "N = 33 символа",
+        chars: "А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я",
+        note: "Используется для записи текстов на русском языке. Если учитывать строчные и заглавные буквы раздельно, то одних только букв будет уже 66."
+      },
+      en: {
+        title: "Латинский (английский) алфавит",
+        power: "N = 26 символов",
+        chars: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+        note: "Лежит в основе большинства европейских языков, а также алфавитов практически всех языков программирования."
+      },
+      dec: {
+        title: "Алфавит десятичной системы счисления",
+        power: "N = 10 символов",
+        chars: "0 1 2 3 4 5 6 7 8 9",
+        note: "Формальный алфавит из десяти арабских цифр, с помощью которого можно записать любое число."
+      },
+      bin: {
+        title: "Двоичный алфавит",
+        power: "N = 2 символа",
+        chars: "0 1",
+        note: "Базовый алфавит современных компьютеров. Каждый символ этого алфавита несёт 1 бит информации."
+      },
+      dna: {
+        title: "Генетический алфавит ДНК (живая природа)",
+        power: "N = 4 символа",
+        chars: "А (аденин)   Т (тимин)   Г (гуанин)   Ц (цитозин)",
+        note: "Четыре нуклеотида образуют природный алфавит, которым в клетках всех живых организмов записана наследственная информация."
+      }
+    };
+
+    function showAlphaPreset(key, btn) {
+      if (btn) {
+        document.querySelectorAll("#alphaPresetBtns .choice-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      }
+      const p = alphaPresets[key];
+      document.getElementById("alphaPresetDetail").innerHTML = `
+        <strong>${p.title} — Мощность: ${p.power}</strong>
+        <div style="font-family: monospace; background: #fff; border: 1px solid var(--border); padding: 8px 10px; border-radius: 8px; margin: 6px 0; font-weight: 700;">${p.chars}</div>
+        <p style="margin-bottom: 0; font-size: 0.92rem;">${p.note}</p>
+      `;
+    }
+    showAlphaPreset("ru");
+
+    function analyzeUserPhrase() {
+      const raw = document.getElementById("phraseAnalyzeInput").value;
+      const out = document.getElementById("phraseAnalyzeOut");
+      if (!raw) {
+        out.textContent = "Введите любую фразу выше, чтобы подсчитать её символы...";
+        return;
+      }
+
+      const totalLen = raw.length;
+      const uniqueSet = Array.from(new Set(raw.split("")));
+      const uniqueCount = uniqueSet.length;
+
+      let belongNote = "Смешанный алфавит (буквы, цифры и знаки)";
+      if (/^[01]+$/.test(raw)) belongNote = "Подходит для двоичного алфавита (N = 2)";
+      else if (/^[0-9]+$/.test(raw)) belongNote = "Подходит для десятичного алфавита (N = 10)";
+      else if (/^[А-Яа-яЁё\s.,!?-]+$/.test(raw)) belongNote = "Подходит для русского текстового алфавита";
+
+      const chipsHtml = uniqueSet.map(ch => {
+        const display = ch === " " ? "␣ (пробел)" : ch;
+        return `<span class="char-chip">${display}</span>`;
+      }).join("");
+
+      out.innerHTML = `
+        <div>Всего символов в сообщении (с пробелами): <strong>${totalLen}</strong></div>
+        <div>Уникальных символов (минимальная мощность алфавита N): <strong>${uniqueCount}</strong></div>
+        <div>Классификация: <span style="color: #34d399;">${belongNote}</span></div>
+        <div class="char-chips">${chipsHtml}</div>
+      `;
+    }
+    analyzeUserPhrase();
+
+    // --- МОДУЛЬ 3: ВАЛИДАТОР СООБЩЕНИЙ ---
+    const m3Data = [
+      { text: "Сообщение «10110101» в двоичном алфавите (N = 2)", answer: "Корректно" },
+      { text: "Сообщение «101201» в двоичном алфавите (N = 2)", answer: "Ошибка (чужой символ)" },
+      { text: "Запись числа «2026» в десятичном алфавите (N = 10)", answer: "Корректно" },
+      { text: "Запись «15F» в десятичном алфавите (N = 10)", answer: "Ошибка (чужой символ)" }
+    ];
+    buildSortModule("m3Container", m3Data, ["Корректно", "Ошибка (чужой символ)"]);
+    function checkM3() { evaluateSortModule("m3Container", m3Data, "m3Feedback", 3); }
+
+    // --- МОДУЛЬ 4: ЛИНГВИСТИЧЕСКИЙ ПРАКТИКУМ ---
+    const m4Data = [
+      {
+        text: "В предложении «На столе лежал красивый лук» непонятно без контекста, идёт ли речь об овоще или об оружии для стрельбы.",
+        options: ["Многозначность естественного языка", "Ошибка в двоичном алфавите"],
+        answer: "Многозначность естественного языка"
+      },
+      {
+        text: "В программе на Python ученик написал «pritn(5)» вместо «print(5)», и компьютер отказался запускать программу.",
+        options: ["Нарушение строгого синтаксиса формального языка", "Слишком большая мощность алфавита"],
+        answer: "Нарушение строгого синтаксиса формального языка"
+      },
+      {
+        text: "Фраза «Встретимся завтра около школы» понятна любому школьнику, даже если не указан точный номер подъезда.",
+        options: ["Гибкость естественного языка", "Строгость формального языка"],
+        answer: "Гибкость естественного языка"
+      }
+    ];
+    buildSortModule("m4Container", m4Data, [
+      "Многозначность естественного языка",
+      "Нарушение строгого синтаксиса формального языка",
+      "Гибкость естественного языка",
+      "Строгость формального языка"
+    ]);
+    function checkM4() { evaluateSortModule("m4Container", m4Data, "m4Feedback", 4); }
+
+    // --- МОДУЛЬ 5: ИТОГОВЫЙ ТЕСТ ---
+    const quizData = [
+      {
+        q: "1. Какой язык относится к ЕСТЕСТВЕННЫМ языкам?",
+        options: [
+          "Язык программирования Python",
+          "Русский язык",
+          "Язык химических формул"
+        ],
+        correct: 1
+      },
+      {
+        q: "2. Какой язык относится к ФОРМАЛЬНЫМ языкам?",
+        options: [
+          "Английский разговорный язык",
+          "Французский язык",
+          "Нотная грамота"
+        ],
+        correct: 2
+      },
+      {
+        q: "3. Что такое алфавит в информатике?",
+        options: [
+          "Конечный набор отличных друг от друга символов, используемых для представления информации",
+          "Любой длинный текст из книги",
+          "Только буквы от А до Я без цифр и знаков препинания"
+        ],
+        correct: 0
+      },
+      {
+        q: "4. Что называют мощностью алфавита?",
+        options: [
+          "Скорость печати на клавиатуре",
+          "Полное количество символов в данном алфавите",
+          "Количество страниц в словаре"
+        ],
+        correct: 1
+      },
+      {
+        q: "5. Чему равна мощность двоичного алфавита, используемого в компьютерах?",
+        options: ["N = 2", "N = 8", "N = 10"],
+        correct: 0
+      },
+      {
+        q: "6. Как называется один символ двоичного алфавита (0 или 1)?",
+        options: ["Байт", "Бит", "Пиксель"],
+        correct: 1
+      },
+      {
+        q: "7. Какова минимальная мощность алфавита (количество уникальных символов), необходимого для записи слова «ИНФОРМАТИКА»?",
+        options: ["9 символов", "10 символов", "11 символов"],
+        correct: 1
+      },
+      {
+        q: "8. Чем формальные языки отличаются от естественных?",
+        options: [
+          "В формальных языках строгие правила записи, нет исключений и каждый знак имеет точный однозначный смысл",
+          "В формальных языках никогда не используются цифры",
+          "Формальные языки возникли в глубокой древности сами по себе"
+        ],
+        correct: 0
+      }
+    ];
+    const quizAnswers = {};
+
+    function renderQuiz() {
+      const box = document.getElementById("finalQuizContainer");
+      box.innerHTML = "";
+      quizData.forEach((item, qIdx) => {
+        const div = document.createElement("div");
+        div.className = "quiz-q";
+        div.innerHTML = `
+          <div><strong>${item.q}</strong></div>
+          <div id="quiz-opts-${qIdx}">
+            ${item.options.map((opt, oIdx) => `
+              <button class="quiz-opt" onclick="selectQuiz(${qIdx}, ${oIdx}, this)">${opt}</button>
+            `).join("")}
+          </div>
+        `;
+        box.appendChild(div);
+      });
+    }
+
+    function selectQuiz(qIdx, oIdx, btn) {
+      quizAnswers[qIdx] = oIdx;
+      const box = document.getElementById(`quiz-opts-${qIdx}`);
+      box.querySelectorAll(".quiz-opt").forEach(b => b.classList.remove("selected", "correct", "wrong"));
+      btn.classList.add("selected");
+    }
+
+    function finishLesson() {
+      if (Object.keys(quizAnswers).length < quizData.length) {
+        alert("Ответь на все 8 вопросов теста перед завершением урока!");
+        return;
+      }
+
+      let score = 0;
+      quizData.forEach((item, qIdx) => {
+        const chosen = quizAnswers[qIdx];
+        const box = document.getElementById(`quiz-opts-${qIdx}`);
+        box.querySelectorAll(".quiz-opt").forEach((b, oIdx) => {
+          b.classList.remove("selected", "correct", "wrong");
+          if (oIdx === item.correct) b.classList.add("correct");
+          else if (oIdx === chosen && chosen !== item.correct) b.classList.add("wrong");
+        });
+        if (chosen === item.correct) score++;
+      });
+
+      let grade = 2;
+      let label = "Нужно повторить тему";
+      if (score >= 7) { grade = 5; label = "Отлично"; }
+      else if (score >= 5) { grade = 4; label = "Хорошо"; }
+      else if (score >= 4) { grade = 3; label = "Удовлетворительно"; }
+
+      markStepDone(5);
+      const mins = Math.max(1, Math.round(state.secondsElapsed / 60));
+      const d = new Date();
+      const code = `INF7-LANG-${score}${grade}-${d.getDate()}${d.getMonth() + 1}`;
+
+      document.getElementById("certStudentName").textContent = state.studentName || "Ученик 7 класса";
+      document.getElementById("certGradeText").textContent = `Оценка: ${grade} (${label})`;
+      document.getElementById("certStats").textContent = `Правильных ответов: ${score} из ${quizData.length} • Время работы: ~${mins} мин.`;
+      document.getElementById("certCode").textContent = `Код проверки: ${code}`;
+      document.getElementById("certificateSection").style.display = "block";
+      document.getElementById("certificateSection").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetAll() {
+      if (confirm("Сбросить прогресс и пройти урок заново?")) {
+        location.reload();
+      }
+    }
+
+    renderQuiz();
+  </script>
+</body>
+</html>
